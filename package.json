@@ -1,0 +1,25 @@
+{
+  "name": "code11clientside",
+  "version": "1.0.0",
+  "description": "Code 11 service side functionality",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DennisDaMenace/code11clientside.git"
+  },
+  "author": "dennis, aaron, ayanle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DennisDaMenace/code11clientside/issues"
+  },
+  "homepage": "https://github.com/DennisDaMenace/code11clientside#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pg": "^7.4.1"
+  }
+}
