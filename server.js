@@ -14,15 +14,19 @@ client.connect();
 
 app.use(express.static('./public'));
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/newbook', (request, response) => {
-  response.send('newBook');
+  response.sendFile('newBook.html', { root: './public' });
+})
+
+app.get('/updatebook', (request, response) => {
+  response.sendFile('updateBook.html', { root: './public' });
 })
 
 app.use((request, response) => {
-  response.status(404).sendFile('404.html', {root: './public'});
+  response.status(404).sendFile('404.html', { root: './public' });
 });
 
 app.listen(PORT, () => {
