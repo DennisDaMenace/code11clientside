@@ -5,12 +5,14 @@ const pg = require('pg');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const cors = require('cors');
+const PORT = process.env.PORT || 8080;
 
-const conString = 'postgress://localhost:5432';
-const client = new pg.Client(conString);
+// const conString = 'postgress://localhost:5432';
+// const conString = 'postgres://postgres:postgres@localhost:5432/booklist';
+// const client = new pg.Client(conString);
 
-client.connect();
+// client.connect();
 
 app.use(express.static('./public'));
 
