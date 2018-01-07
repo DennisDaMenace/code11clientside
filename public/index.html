@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title>Lab 11 by DennisDaMenace</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script id="address-template" type="text/x-handlebars-template">
+        <p>You can find me in {{city}}. My address is {{number}} {{street}}.</p>
+    </script>
+    <script id="book-template" type="text/x-handlebars-template">
+        <div class="col-md-12">
+                <div class="col-md-12">
+                    <img src="{{{image_url}}}" alt="" width="400">
+                </div>
+                <div class="col-md-12">
+                    <h3>{{title}}</h3>
+                    <h4>by {{author}}</h4>
+                </div>
+
+                <div class="col-md-12">
+                    <span> {{ description}} </span>
+                </div>
+            </div>
+    </script>
 </head>
+
 <body>
-    <h1>I AM A BANANA!!!!</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="background:#808080 ">
+                <h2>Book App by Aaron, Dennis and Ayanle</h2>
+            </div>
+            <div id="books"></div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="book.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <!-- <script src="book.js"></script> -->
+    <script>
+        function Book(rawDataObj) {
+            Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
+        }
+        Book.all = [];
+        var articleView = {};
+
+        Book.prototype.toHtml = function () {
+            var template = Handlebars.compile($('#book-template').text());
+            return template(this);
+        };
+
+        $.get('https://server-lab10-codefellows.herokuapp.com/api/v1/books', (data) => {
+            Book.all = data.map(someVariable => new Book(someVariable));
+            Book.all.forEach(a => $('#books').append(a.toHtml()));
+        });
+    </script>
 </body>
+
 </html>
